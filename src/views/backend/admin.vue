@@ -1,5 +1,5 @@
 <template>
- <h1>admin</h1>
+ <h1>hola admin</h1>
 </template>
 
 <script>
