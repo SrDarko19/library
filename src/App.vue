@@ -1,30 +1,42 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div>
+  <div v-if="check_auth">
+    <div id="nav">
+      <router-link :to="{ path: 'admin' }">admin</router-link> |
+      <router-link :to="{ path: 'student' }">student</router-link> |
+      <router-link :to="{ path: 'management' }">management</router-link>
+    </div>
+    auth part
+  </div>
+  <div v-else>
+    <div id="nav">
+      <router-link :to="{ path: 'login' }">Login</router-link> |
+      <router-link :to="{ path: 'signup' }">Signup</router-link> |
+      <router-link :to="{ path: 'portfolio' }">Portfolio</router-link>
+    </div>
+    not auth port
+  </div>
+
+</div>
+<router-view />
+
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  export default {
+  data: function() {
+    return {
+  check_auth: true,
+    }
+  },
+  created: function() {
+    if(this.check_auth){
+      this.$router.replace({name:'dasboard'});
+    }else{
+      this.$router.replace({name:'login'});
+    }
+  }
+};
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
